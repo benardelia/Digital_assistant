@@ -68,7 +68,9 @@ class _TimeState extends State<Time> {
                   keyboardType: TextInputType.number,
                   controller: _input,
                   onChanged: (_input) {
-                    conveter(_input);
+                    if (_inputTime == _outputTime) {
+                      _output.text = (double.parse(_input) * 1).toString();
+                    }
                   },
                   decoration: InputDecoration(
                       hintText: _inputTime,
@@ -104,55 +106,5 @@ class _TimeState extends State<Time> {
         ],
       ),
     );
-  }
-
-  void conveter(String _input) {
-    if (_inputTime == _outputTime) {
-      _output.text = (double.parse(_input) * 1).toString();
-      // second to other units start below
-    } else if (_inputTime == 'Second') {
-      if (_outputTime == 'Minute') {
-        _output.text = (double.parse(_input) / 60).toString();
-      } else if (_outputTime == 'Millisecond') {
-        _output.text = (double.parse(_input) * 1000).toString();
-      } else if (_outputTime == 'Microsecond') {
-        _output.text = (double.parse(_input) * 1000000).toString();
-      } else if (_outputTime == 'Nanosecond') {
-        _output.text = (double.parse(_input) * 1000000000).toString();
-      } else if (_outputTime == 'Picosecond') {
-        _output.text = (double.parse(_input) * 1000000000000).toString();
-      } else if (_outputTime == 'Hour') {
-        _output.text = (double.parse(_input) * 1000).toString();
-      } else if (_outputTime == 'Week') {
-        _output.text = (double.parse(_input) * 0.0000016534).toString();
-      } else if (_outputTime == 'Month') {
-        _output.text = (double.parse(_input) * 3.802570537E-7).toString();
-      } else if (_outputTime == 'Year') {
-        _output.text = (double.parse(_input) * 3.168808781E-8).toString();
-      } else if (_outputTime == 'Day') {
-        _output.text = (double.parse(_input) / 86400).toString();
-      }
-      // Minute to other units start below
-    } else if (_inputTime == 'Minute') {
-      if (_outputTime == 'Hour') {
-        _output.text = (double.parse(_input) * 0.0166666667).toString();
-      } else if (_outputTime == 'Millisecond') {
-        _output.text = (double.parse(_input) * 60000).toString();
-      } else if (_outputTime == 'Microsecond') {
-        _output.text = (double.parse(_input) * 60000000).toString();
-      } else if (_outputTime == 'Nanosecond') {
-        _output.text = (double.parse(_input) * 60000000000).toString();
-      } else if (_outputTime == 'Picosecond') {
-        _output.text = (double.parse(_input) * 60000000000000).toString();
-      } else if (_outputTime == 'Week') {
-        _output.text = (double.parse(_input) * 0.0000992063).toString();
-      } else if (_outputTime == 'Month') {
-        _output.text = (double.parse(_input) * 0.0000228154).toString();
-      } else if (_outputTime == 'Year') {
-        _output.text = (double.parse(_input) * 0.0000019013).toString();
-      } else if (_outputTime == 'Day') {
-        _output.text = (double.parse(_input) * 0.0006944444).toString();
-      }
-    }
   }
 }
