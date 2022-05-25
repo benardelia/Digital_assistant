@@ -2,6 +2,7 @@ import 'package:digital_assistant/helping/area.dart';
 import 'package:digital_assistant/helping/legnth.dart';
 import 'package:digital_assistant/helping/listies.dart';
 import 'package:digital_assistant/helping/time.dart';
+import 'package:digital_assistant/helping/units.dart';
 import 'package:flutter/material.dart';
 
 class Unitexchange extends StatefulWidget {
@@ -76,9 +77,21 @@ class _UnitexchangeState extends State<Unitexchange> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Length()));
             break;
+           case 2:
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Units(inputUnit: 'Gram', outputUnit: 'Gram', unitList: Listies().Weight, title: 'Weight',)));
+            break;
           case 3:
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => const Area()));
+            break;
+          case 4:
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) =>  Units(inputUnit: 'Cubic Meter', outputUnit: 'Cubic Meter', unitList: Listies().Volume, title: 'Volume')));
+            break;
+           case 5:
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) =>  Units(inputUnit: 'Celcius', outputUnit: 'Celcius', unitList: Listies().Temperature, title: 'Temperature')));
             break;
           case 6:
             Navigator.push(

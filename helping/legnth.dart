@@ -82,7 +82,9 @@ class _LengthState extends State<Length> with SingleTickerProviderStateMixin {
                   keyboardType: TextInputType.number,
                   controller: _input,
                   onChanged: (_input) {
-                    _output.text = (double.parse(_input) * 20).toString();
+                   if (lengthUnit == lengthUnit2) {
+                      _output.text = (double.parse(_input) * 1).toString();
+                    }
                   },
                   decoration: InputDecoration(
                     

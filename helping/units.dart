@@ -2,21 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import 'listies.dart';
+class Units extends StatefulWidget {
+   const  Units(
+      {Key? key,
+      required this.inputUnit,
+      required this.outputUnit,
+      required this.unitList,
+      required this.title})
+      : super(key: key);
 
-class Time extends StatefulWidget {
-  const Time({Key? key}) : super(key: key);
+  final String inputUnit;
+  final String outputUnit;
+  final List unitList;
+  final String title;
 
   @override
-  State<Time> createState() => _TimeState();
+  State<Units> createState() => _UnitsState();
 }
 
-TextEditingController _input = TextEditingController();
-TextEditingController _output = TextEditingController();
-String _inputTime = 'Second';
-String _outputTime = 'Second';
 
-class _TimeState extends State<Time> {
+class _UnitsState extends State<Units>  with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+  TextEditingController _input = TextEditingController();
+  TextEditingController _output = TextEditingController();
+  late String _inputUnit = widget.inputUnit;
+  late String _outputUnit = widget.outputUnit;
+
+   @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,7 +58,7 @@ class _TimeState extends State<Time> {
                             colors: [Colors.pink, Colors.purple],
                             begin: Alignment.bottomRight,
                             end: Alignment.topLeft))),
-                title: const Text('Area'),
+                title: Text(widget.title),
                 backgroundColor: Colors.transparent,
                 actions: [
                   IconButton(onPressed: () {}, icon: const Icon(Icons.search))
@@ -50,9 +73,9 @@ class _TimeState extends State<Time> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 DropdownButton<String>(
-                    value: _inputTime,
+                    value: _inputUnit,
                     items:
-                        Listies().Time.map<DropdownMenuItem<String>>((value) {
+                        widget.unitList.map<DropdownMenuItem<String>>((value) {
                       return DropdownMenuItem(
                         child: Text(
                           value,
@@ -62,25 +85,25 @@ class _TimeState extends State<Time> {
                       );
                     }).toList(),
                     onChanged: (value) => setState(() {
-                          _inputTime = value!;
+                          _inputUnit = value!;
                         })),
                 TextField(
                   keyboardType: TextInputType.number,
                   controller: _input,
                   onChanged: (_input) {
-                    if (_inputTime == _outputTime) {
+                    if (_inputUnit == _outputUnit) {
                       _output.text = (double.parse(_input) * 1).toString();
                     }
                   },
                   decoration: InputDecoration(
-                      hintText: _inputTime,
+                      hintText: _inputUnit,
                       filled: true,
                       fillColor: Colors.white),
                 ),
                 DropdownButton<String>(
-                    value: _outputTime,
+                    value: _outputUnit,
                     items:
-                        Listies().Time.map<DropdownMenuItem<String>>((value) {
+                        widget.unitList.map<DropdownMenuItem<String>>((value) {
                       return DropdownMenuItem(
                         child: Text(
                           value,
@@ -90,7 +113,7 @@ class _TimeState extends State<Time> {
                       );
                     }).toList(),
                     onChanged: (value) => setState(() {
-                          _outputTime = value!;
+                          _outputUnit = value!;
                         })),
                 TextField(
                   readOnly: true,
