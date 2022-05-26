@@ -6,7 +6,7 @@ import 'listies.dart';
 
 class Time extends StatefulWidget {
   const Time({Key? key}) : super(key: key);
-
+ final String _inputTime = 'Second';
   @override
   State<Time> createState() => _TimeState();
 }

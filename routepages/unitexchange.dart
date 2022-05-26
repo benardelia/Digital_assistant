@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:digital_assistant/helping/area.dart';
 import 'package:digital_assistant/helping/legnth.dart';
 import 'package:digital_assistant/helping/listies.dart';
@@ -77,25 +79,54 @@ class _UnitexchangeState extends State<Unitexchange> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Length()));
             break;
-           case 2:
-              Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Units(inputUnit: 'Gram', outputUnit: 'Gram', unitList: Listies().Weight, title: 'Weight',)));
+          case 2:
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                        inputUnit: 'Gram',
+                        outputUnit: 'Gram',
+                        unitList: Listies().Weight,
+                        title: 'Weight',
+                        converter: () {})));
             break;
           case 3:
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => const Area()));
             break;
           case 4:
-              Navigator.push(
-                context, MaterialPageRoute(builder: (context) =>  Units(inputUnit: 'Cubic Meter', outputUnit: 'Cubic Meter', unitList: Listies().Volume, title: 'Volume')));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                          inputUnit: 'Cubic Meter',
+                          outputUnit: 'Cubic Meter',
+                          unitList: Listies().Volume,
+                          title: 'Volume',
+                          converter: () {},
+                        )));
             break;
-           case 5:
-              Navigator.push(
-                context, MaterialPageRoute(builder: (context) =>  Units(inputUnit: 'Celcius', outputUnit: 'Celcius', unitList: Listies().Temperature, title: 'Temperature')));
+          case 5:
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                        inputUnit: 'Celcius',
+                        outputUnit: 'Celcius',
+                        unitList: Listies().Temperature,
+                        title: 'Temperature',
+                        converter: () {})));
             break;
           case 6:
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const Time()));
+             Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                        inputUnit: 'Second',
+                        outputUnit: 'Second',
+                        unitList: Listies().Time,
+                        title: 'Time',
+                        converter: () {})));
             break;
         }
       },

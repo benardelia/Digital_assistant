@@ -3,32 +3,32 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Units extends StatefulWidget {
-   const  Units(
+  const Units(
       {Key? key,
       required this.inputUnit,
       required this.outputUnit,
       required this.unitList,
-      required this.title})
+      required this.title, required this.converter})
       : super(key: key);
 
   final String inputUnit;
   final String outputUnit;
   final List unitList;
   final String title;
+  final Function() converter;
 
   @override
   State<Units> createState() => _UnitsState();
 }
 
-
-class _UnitsState extends State<Units>  with SingleTickerProviderStateMixin{
+class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  TextEditingController _input = TextEditingController();
-  TextEditingController _output = TextEditingController();
+  final TextEditingController _input = TextEditingController();
+  final TextEditingController _output = TextEditingController();
   late String _inputUnit = widget.inputUnit;
   late String _outputUnit = widget.outputUnit;
 
-   @override
+  @override
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
@@ -39,7 +39,7 @@ class _UnitsState extends State<Units>  with SingleTickerProviderStateMixin{
     super.dispose();
     _controller.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
