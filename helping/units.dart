@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/services.dart';
 
 class Units extends StatefulWidget {
   const Units(
@@ -8,7 +7,8 @@ class Units extends StatefulWidget {
       required this.inputUnit,
       required this.outputUnit,
       required this.unitList,
-      required this.title, required this.converter})
+      required this.title,
+      required this.converter})
       : super(key: key);
 
   final String inputUnit;
@@ -43,6 +43,7 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
       body: Stack(
         children: [
@@ -93,6 +94,14 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
                   onChanged: (_input) {
                     if (_inputUnit == _outputUnit) {
                       _output.text = (double.parse(_input) * 1).toString();
+                    } else if (widget.title == 'Time') {
+                      timeConveter(_input);
+                    } else if (widget.title == 'Temperature') {
+                      tempConverter(_input);
+                    } else if (widget.title == 'Length') {
+                      print('am length now');
+                    } else if (widget.title == 'Area') {
+                      print('hello area');
                     }
                   },
                   decoration: InputDecoration(
@@ -100,6 +109,7 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
                       filled: true,
                       fillColor: Colors.white),
                 ),
+                const Icon(Icons.arrow_downward_outlined, color: Colors.white),
                 DropdownButton<String>(
                     value: _outputUnit,
                     items:
@@ -130,4 +140,83 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
+  void timeConveter(String _input) {
+    if (_inputUnit == 'Second') {
+      if (_outputUnit == 'Minute') {
+        _output.text = (double.parse(_input) / 60).toString();
+      } else if (_outputUnit == 'Millisecond') {
+        _output.text = (double.parse(_input) * 1000).toString();
+      } else if (_outputUnit == 'Microsecond') {
+        _output.text = (double.parse(_input) * 1000000).toString();
+      } else if (_outputUnit == 'Nanosecond') {
+        _output.text = (double.parse(_input) * 1000000000).toString();
+      } else if (_outputUnit == 'Picosecond') {
+        _output.text = (double.parse(_input) * 1000000000000).toString();
+      } else if (_outputUnit == 'Hour') {
+        _output.text = (double.parse(_input) * 1000).toString();
+      } else if (_outputUnit == 'Week') {
+        _output.text = (double.parse(_input) * 0.0000016534).toString();
+      } else if (_outputUnit == 'Month') {
+        _output.text = (double.parse(_input) * 3.802570537E-7).toString();
+      } else if (_outputUnit == 'Year') {
+        _output.text = (double.parse(_input) * 3.168808781E-8).toString();
+      } else if (_outputUnit == 'Day') {
+        _output.text = (double.parse(_input) / 86400).toString();
+      }
+      // Minute to other units start
+
+    } else if (_inputUnit == 'Minute') {
+      if (_outputUnit == 'Hour') {
+        _output.text = (double.parse(_input) * 0.0166666667).toString();
+      } else if (_outputUnit == 'Millisecond') {
+        _output.text = (double.parse(_input) * 60000).toString();
+      } else if (_outputUnit == 'Microsecond') {
+        _output.text = (double.parse(_input) * 60000000).toString();
+      } else if (_outputUnit == 'Nanosecond') {
+        _output.text = (double.parse(_input) * 60000000000).toString();
+      } else if (_outputUnit == 'Picosecond') {
+        _output.text = (double.parse(_input) * 60000000000000).toString();
+      } else if (_outputUnit == 'Week') {
+        _output.text = (double.parse(_input) * 0.0000992063).toString();
+      } else if (_outputUnit == 'Month') {
+        _output.text = (double.parse(_input) * 0.0000228154).toString();
+      } else if (_outputUnit == 'Year') {
+        _output.text = (double.parse(_input) * 0.0000019013).toString();
+      } else if (_outputUnit == 'Day') {
+        _output.text = (double.parse(_input) * 0.0006944444).toString();
+      } else {
+        _output.text = (double.parse(_input) * 60).toString();
+      }
+    }
+  }
+
+  // to be done temperature converter
+  void tempConverter(_input) {
+    if (_inputUnit == 'Celcius') {
+      if (_outputUnit == 'Kelvin') {
+        _output.text = (double.parse(_input) + 273).toString();
+      } else {
+        _output.text = (double.parse(_input) * 1000).toString();
+      }
+    } else if (_inputUnit == 'Kelvin') {
+      if (_outputUnit == 'Celcius') {
+        _output.text = (double.parse(_input) - 273).toString();
+      } else {
+        _output.text = (double.parse(_input) * 1000).toString();
+      }
+    } else {
+      if (_outputUnit == 'Celcius') {
+        _output.text = (double.parse(_input) - 273).toString();
+      } else {
+        _output.text = (double.parse(_input) * 1000).toString();
+      }
+    }
+  }
+  // methode to convert length
+  void lengthConverter(_input){
+
+  }
+
+  // many methodes followup down here
 }

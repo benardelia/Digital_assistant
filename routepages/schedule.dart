@@ -10,7 +10,7 @@ class Schedule extends StatefulWidget {
 
 class _ScheduleState extends State<Schedule> {
   Color? mainColor = Colors.pink[500];
-  final scheduleList = new Map();
+  final scheduleList = {};
   DateTime selectedDate = DateTime.now();
   String Date = "none";
   final TextEditingController _headingController = TextEditingController();

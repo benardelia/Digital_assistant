@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-import 'package:digital_assistant/helping/area.dart';
-import 'package:digital_assistant/helping/legnth.dart';
 import 'package:digital_assistant/helping/listies.dart';
-import 'package:digital_assistant/helping/time.dart';
 import 'package:digital_assistant/helping/units.dart';
 import 'package:flutter/material.dart';
 
@@ -76,8 +71,15 @@ class _UnitexchangeState extends State<Unitexchange> {
       onPressed: () {
         switch (index) {
           case 1:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Length()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                        inputUnit: 'Meter',
+                        outputUnit: 'Meter',
+                        unitList: Listies().Length,
+                        title: 'Length',
+                        converter: () {})));
             break;
           case 2:
             Navigator.push(
@@ -92,7 +94,14 @@ class _UnitexchangeState extends State<Unitexchange> {
             break;
           case 3:
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const Area()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Units(
+                        inputUnit: 'Square Meter',
+                        outputUnit: 'Square Meter',
+                        unitList: Listies().Area,
+                        title: 'Area',
+                        converter: () {})));
             break;
           case 4:
             Navigator.push(
@@ -118,7 +127,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                         converter: () {})));
             break;
           case 6:
-             Navigator.push(
+            Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => Units(
@@ -126,7 +135,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                         outputUnit: 'Second',
                         unitList: Listies().Time,
                         title: 'Time',
-                        converter: () {})));
+                        converter: (){})));
             break;
         }
       },

@@ -9,16 +9,19 @@ import 'package:digital_assistant/routepages/unitexchange.dart';
 import 'package:digital_assistant/sidebarnavigator.dart';
 import 'package:flutter/material.dart';
 
-class homepage extends StatefulWidget {
+
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
+
   @override
-  State<homepage> createState() => _homepageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _homepageState extends State<homepage> {
+class _HomepageState extends State<Homepage> {
   Color? appColor = Colors.white;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+   // Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: appColor,
       drawer: const SideNavigator(),
@@ -52,7 +55,7 @@ class _homepageState extends State<homepage> {
                     homebuttons('assets/cook.png', 'Learn to cook', 2)
                   ],
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -63,7 +66,7 @@ class _homepageState extends State<homepage> {
                     homebuttons('assets/dailnews.jpeg', 'Daily news', 4)
                   ],
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -73,7 +76,7 @@ class _homepageState extends State<homepage> {
                     homebuttons('assets/workout.jpeg', 'Workout', 6)
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -83,7 +86,7 @@ class _homepageState extends State<homepage> {
                     homebuttons('assets/stopwatch.png', 'Stopwatch', 8)
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(

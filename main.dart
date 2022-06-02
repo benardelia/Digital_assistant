@@ -6,9 +6,8 @@ import 'homepage.dart';
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox('My_schedule');
-  
-  runApp(MaterialApp(
-    home: homepage(),
+    runApp(const MaterialApp(   
+    home: Homepage(),
     debugShowCheckedModeBanner: false,
   ));
 }
