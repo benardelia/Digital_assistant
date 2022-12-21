@@ -1,3 +1,4 @@
+import 'package:digital_assistant/helping/listies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -87,22 +88,13 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
                     }).toList(),
                     onChanged: (value) => setState(() {
                           _inputUnit = value!;
+                          onChangeMethod(_input.text);
                         })),
                 TextField(
                   keyboardType: TextInputType.number,
                   controller: _input,
                   onChanged: (_input) {
-                    if (_inputUnit == _outputUnit) {
-                      _output.text = (double.parse(_input) * 1).toString();
-                    } else if (widget.title == 'Time') {
-                      timeConveter(_input);
-                    } else if (widget.title == 'Temperature') {
-                      tempConverter(_input);
-                    } else if (widget.title == 'Length') {
-                      print('am length now');
-                    } else if (widget.title == 'Area') {
-                      print('hello area');
-                    }
+                    onChangeMethod(_input);
                   },
                   decoration: InputDecoration(
                       hintText: _inputUnit,
@@ -124,6 +116,7 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
                     }).toList(),
                     onChanged: (value) => setState(() {
                           _outputUnit = value!;
+                          onChangeMethod(_input.text);
                         })),
                 TextField(
                   readOnly: true,
@@ -141,52 +134,35 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
     );
   }
 
-  void timeConveter(String _input) {
-    if (_inputUnit == 'Second') {
-      if (_outputUnit == 'Minute') {
-        _output.text = (double.parse(_input) / 60).toString();
-      } else if (_outputUnit == 'Millisecond') {
-        _output.text = (double.parse(_input) * 1000).toString();
-      } else if (_outputUnit == 'Microsecond') {
-        _output.text = (double.parse(_input) * 1000000).toString();
-      } else if (_outputUnit == 'Nanosecond') {
-        _output.text = (double.parse(_input) * 1000000000).toString();
-      } else if (_outputUnit == 'Picosecond') {
-        _output.text = (double.parse(_input) * 1000000000000).toString();
-      } else if (_outputUnit == 'Hour') {
-        _output.text = (double.parse(_input) * 1000).toString();
-      } else if (_outputUnit == 'Week') {
-        _output.text = (double.parse(_input) * 0.0000016534).toString();
-      } else if (_outputUnit == 'Month') {
-        _output.text = (double.parse(_input) * 3.802570537E-7).toString();
-      } else if (_outputUnit == 'Year') {
-        _output.text = (double.parse(_input) * 3.168808781E-8).toString();
-      } else if (_outputUnit == 'Day') {
-        _output.text = (double.parse(_input) / 86400).toString();
-      }
-      // Minute to other units start
+  void onChangeMethod(_input) {
+    if (_inputUnit == _outputUnit) {
+      _output.text = (double.parse(_input) * 1).toString();
+    } else if (widget.title == 'Time') {
+      timeConveter(_input);
+    } else if (widget.title == 'Temperature') {
+      tempConverter(_input);
+      
+    } else if (widget.title == 'Length') {
+      // print('am length now');
+    } else if (widget.title == 'Area') {
+      // print('hello area');
+    } else if (widget.title == 'Weight') {
+      // print('hello weight');
+    } else if (widget.title == 'Volume') {
+      // print('hello Volume');
+    }
+  }
 
-    } else if (_inputUnit == 'Minute') {
-      if (_outputUnit == 'Hour') {
-        _output.text = (double.parse(_input) * 0.0166666667).toString();
-      } else if (_outputUnit == 'Millisecond') {
-        _output.text = (double.parse(_input) * 60000).toString();
-      } else if (_outputUnit == 'Microsecond') {
-        _output.text = (double.parse(_input) * 60000000).toString();
-      } else if (_outputUnit == 'Nanosecond') {
-        _output.text = (double.parse(_input) * 60000000000).toString();
-      } else if (_outputUnit == 'Picosecond') {
-        _output.text = (double.parse(_input) * 60000000000000).toString();
-      } else if (_outputUnit == 'Week') {
-        _output.text = (double.parse(_input) * 0.0000992063).toString();
-      } else if (_outputUnit == 'Month') {
-        _output.text = (double.parse(_input) * 0.0000228154).toString();
-      } else if (_outputUnit == 'Year') {
-        _output.text = (double.parse(_input) * 0.0000019013).toString();
-      } else if (_outputUnit == 'Day') {
-        _output.text = (double.parse(_input) * 0.0006944444).toString();
-      } else {
-        _output.text = (double.parse(_input) * 60).toString();
+  void converterGeneral(String input, String inputUnit, String outputUnit) {
+    // to be implemented
+  }
+
+  void timeConveter(String _input) {
+    dynamic value = 0.0;
+    for (List i in UnitValue().unitsAndValues[widget.title]) {
+      if (i.contains(_inputUnit) && i.contains(_outputUnit)) {
+        (_inputUnit == i[0]) ? value = i[2] : value = 1 / i[2];
+        _output.text = (double.parse(_input) * value).toString();
       }
     }
   }
@@ -197,26 +173,26 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
       if (_outputUnit == 'Kelvin') {
         _output.text = (double.parse(_input) + 273).toString();
       } else {
-        _output.text = (double.parse(_input) * 1000).toString();
+        _output.text = (double.parse(_input) * 5/9 + 32).toString();
       }
     } else if (_inputUnit == 'Kelvin') {
       if (_outputUnit == 'Celcius') {
         _output.text = (double.parse(_input) - 273).toString();
       } else {
-        _output.text = (double.parse(_input) * 1000).toString();
+        _output.text = ((double.parse(_input) - 273) * 1.8 + 32).toString();
+        
       }
     } else {
       if (_outputUnit == 'Celcius') {
-        _output.text = (double.parse(_input) - 273).toString();
+        _output.text = ((double.parse(_input)-32) * 5/9).toString();
       } else {
-        _output.text = (double.parse(_input) * 1000).toString();
+        _output.text = (double.parse(_input) - 32 + 273).toString();
       }
     }
   }
-  // methode to convert length
-  void lengthConverter(_input){
 
-  }
+  // methode to convert length
+  void lengthConverter(_input) {}
 
   // many methodes followup down here
 }

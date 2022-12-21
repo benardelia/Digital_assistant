@@ -90,7 +90,7 @@ class _ScheduleState extends State<Schedule> {
         context: context,
         builder: (context) => AlertDialog(
               title: const Text('Add Schedule'),
-              content: Container(
+              content: SizedBox(
                 height: 250,
                 child: Form(
                   key: formKey,

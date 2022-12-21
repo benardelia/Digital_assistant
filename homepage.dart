@@ -1,9 +1,9 @@
-import 'package:digital_assistant/routepages/Menstrual.dart';
-import 'package:digital_assistant/routepages/News.dart';
+import 'package:digital_assistant/routepages/menstrual.dart';
+import 'package:digital_assistant/routepages/news.dart';
 import 'package:digital_assistant/routepages/Schedule.dart';
-import 'package:digital_assistant/routepages/Watering.dart';
-import 'package:digital_assistant/routepages/Weather.dart';
-import 'package:digital_assistant/routepages/Workout.dart';
+import 'package:digital_assistant/routepages/watering.dart';
+import 'package:digital_assistant/routepages/weather.dart';
+import 'package:digital_assistant/routepages/workout.dart';
 import 'package:digital_assistant/routepages/cook.dart';
 import 'package:digital_assistant/routepages/unitexchange.dart';
 import 'package:digital_assistant/sidebarnavigator.dart';

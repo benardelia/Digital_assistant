@@ -12,19 +12,17 @@ class Unitexchange extends StatefulWidget {
 class _UnitexchangeState extends State<Unitexchange> {
   String currentUnit = 'Length';
   String unitType = 'Meter';
-  List currentConvert = Listies().Length;
+  List currentConvert = Listies().length;
 
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
-    //  changeList();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //  changeList(currentUnit);
     return Scaffold(
         body: Stack(children: [
       Positioned(
@@ -77,7 +75,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                         inputUnit: 'Meter',
                         outputUnit: 'Meter',
-                        unitList: Listies().Length,
+                        unitList: Listies().length,
                         title: 'Length',
                         converter: () {})));
             break;
@@ -88,7 +86,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                         inputUnit: 'Gram',
                         outputUnit: 'Gram',
-                        unitList: Listies().Weight,
+                        unitList: Listies().weight,
                         title: 'Weight',
                         converter: () {})));
             break;
@@ -99,7 +97,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                         inputUnit: 'Square Meter',
                         outputUnit: 'Square Meter',
-                        unitList: Listies().Area,
+                        unitList: Listies().area,
                         title: 'Area',
                         converter: () {})));
             break;
@@ -110,7 +108,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                           inputUnit: 'Cubic Meter',
                           outputUnit: 'Cubic Meter',
-                          unitList: Listies().Volume,
+                          unitList: Listies().volume,
                           title: 'Volume',
                           converter: () {},
                         )));
@@ -122,7 +120,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                         inputUnit: 'Celcius',
                         outputUnit: 'Celcius',
-                        unitList: Listies().Temperature,
+                        unitList: Listies().temperature,
                         title: 'Temperature',
                         converter: () {})));
             break;
@@ -133,7 +131,7 @@ class _UnitexchangeState extends State<Unitexchange> {
                     builder: (context) => Units(
                         inputUnit: 'Second',
                         outputUnit: 'Second',
-                        unitList: Listies().Time,
+                        unitList: Listies().time,
                         title: 'Time',
                         converter: (){})));
             break;
