@@ -8,15 +8,13 @@ class Units extends StatefulWidget {
       required this.inputUnit,
       required this.outputUnit,
       required this.unitList,
-      required this.title,
-      required this.converter})
+      required this.title})
       : super(key: key);
 
   final String inputUnit;
   final String outputUnit;
   final List unitList;
   final String title;
-  final Function() converter;
 
   @override
   State<Units> createState() => _UnitsState();
@@ -134,30 +132,19 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
     );
   }
 
-  void onChangeMethod(_input) {
-    if (_inputUnit == _outputUnit) {
-      _output.text = (double.parse(_input) * 1).toString();
-    } else if (widget.title == 'Time') {
-      timeConveter(_input);
-    } else if (widget.title == 'Temperature') {
-      tempConverter(_input);
-      
-    } else if (widget.title == 'Length') {
-      // print('am length now');
-    } else if (widget.title == 'Area') {
-      // print('hello area');
-    } else if (widget.title == 'Weight') {
-      // print('hello weight');
-    } else if (widget.title == 'Volume') {
-      // print('hello Volume');
+  void onChangeMethod(String _input) {
+    if (_input.isNotEmpty) {
+      if (_inputUnit == _outputUnit) {
+        _output.text = (double.parse(_input) * 1).toString();
+      } else if (widget.title == 'Temperature') {
+        tempConverter(_input);
+      } else {
+        generalConverter(_input);
+      }
     }
   }
 
-  void converterGeneral(String input, String inputUnit, String outputUnit) {
-    // to be implemented
-  }
-
-  void timeConveter(String _input) {
+  void generalConverter(String _input) {
     dynamic value = 0.0;
     for (List i in UnitValue().unitsAndValues[widget.title]) {
       if (i.contains(_inputUnit) && i.contains(_outputUnit)) {
@@ -173,18 +160,17 @@ class _UnitsState extends State<Units> with SingleTickerProviderStateMixin {
       if (_outputUnit == 'Kelvin') {
         _output.text = (double.parse(_input) + 273).toString();
       } else {
-        _output.text = (double.parse(_input) * 5/9 + 32).toString();
+        _output.text = (double.parse(_input) * 5 / 9 + 32).toString();
       }
     } else if (_inputUnit == 'Kelvin') {
       if (_outputUnit == 'Celcius') {
         _output.text = (double.parse(_input) - 273).toString();
       } else {
         _output.text = ((double.parse(_input) - 273) * 1.8 + 32).toString();
-        
       }
     } else {
       if (_outputUnit == 'Celcius') {
-        _output.text = ((double.parse(_input)-32) * 5/9).toString();
+        _output.text = ((double.parse(_input) - 32) * 5 / 9).toString();
       } else {
         _output.text = (double.parse(_input) - 32 + 273).toString();
       }
